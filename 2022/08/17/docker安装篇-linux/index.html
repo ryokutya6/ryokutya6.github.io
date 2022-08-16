@@ -29,7 +29,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token opera
 <span class="token string">"deb [arch=<span class="token variable"><span class="token variable">$(</span>dpkg --print-architecture<span class="token variable">)</span></span> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
 <span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> stable"</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/docker.list <span class="token operator">></span> /dev/null 
 </code></pre>
-<p>并下载最新DEB包，<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/ubuntu/">连接在此</a>。下载完成后在下载目录执行以下命令。</p>
+<p>并下载最新DEB包，<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/ubuntu/">链接在这</a>。下载完成后在下载目录执行以下命令。</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
 <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> ./docker-desktop-<span class="token operator">&lt;</span>version<span class="token operator">></span>-<span class="token operator">&lt;</span>arch<span class="token operator">></span>.deb
 </code></pre>
