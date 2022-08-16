@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author"><title>docker安装篇-linux · Ryokutya's Notes</title><meta name="description" content="打开官方文档点击当前的linux版本对应的安装指引。本文使用Ubuntu 22.04LTS。
+安装Dokcer Desktop
+Docker Desktop包括：Docker Engine，Docker CLI client，Docker Compose，Docker Content Trust，K"><meta name="og:description" content="打开官方文档点击当前的linux版本对应的安装指引。本文使用Ubuntu 22.04LTS。
+安装Dokcer Desktop
+Docker Desktop包括：Docker Engine，Docker CLI client，Docker Compose，Docker Content Trust，K"><meta name="twitter:site" content="Ryokutya's Notes"><meta name="twitter:title" content="docker安装篇-linux"><meta name="twitter:card" content="summary"><meta name="keywords" content="game music diary tech coding"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/bootstrap.min.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/style.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-base16-ateliersulphurpool.light.css" type="text/css"></head><body><div id="stage" class="container"><div class="row"><div id="side-bar" class="col-sm-3 col-xs-12 side-container invisible"><div class="vertical-text site-title"><h3 tabindex="-1" class="site-title-small"><a href="/" class="a-title">你好・Hello・こんにちは</a></h3><h1 tabindex="-1" class="site-title-large"><a href="/" class="a-title">Ryokutya's Notes</a></h1><!--h6(onclick="triggerSiteNav()") Trigger--></div><br class="visible-lg visible-md visible-sm"><div id="site-nav" class="site-title-links"><ul><li><a href="/">Home</a></li><li><a href="/archives">Archive</a></li><li><a href="/tags">Tags</a></li><li><a href="/Links/index.html">Links</a></li><li class="soc"><a href="https://github.com/ryokutya6" target="_blank" rel="noopener noreferrer" aria-label="Github"><i class="fa fa-github">&nbsp;</i></a><a href="https://ryokutya6.github.io/atom.xml" target="_blank" rel="noopener noreferrer" aria-label="RSS"><i class="fa fa-rss">&nbsp;</i></a></li></ul><div class="visible-lg visible-md visible-sm site-nav-footer"><br class="site-nav-footer-br"><footer><p>&copy;&nbsp;2022&nbsp;<a target="_blank" href="https://ryokutya6.github.io" rel="noopener noreferrer">ryokutya</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div><div id="main-container" class="col-sm-9 col-xs-12 main-container invisible"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post-container"><p class="post-title"><a>docker安装篇-linux</a></p><p class="post-meta"><span class="date meta-item">Posted at&nbsp;2022-08-17</span><span class="meta-item"><i class="fa fa-comment-o"></i><span>&nbsp;</span><a href="/2022/08/17/docker%E5%AE%89%E8%A3%85%E7%AF%87-linux/#comments">Comments</a></span><span class="meta-item"><i class="fa fa-tag"></i><span>&nbsp;</span><a href="/tags/docker/" title="docker" class="a-tag">docker</a><span>&nbsp;</span><a href="/tags/linux/" title="linux" class="a-tag">linux</a><span>&nbsp;</span></span></p><p class="post-abstract"><!-- ![11123dsadasdsadsa](333.png)   -->
+<h3 id="打开官方文档"><a href="#打开官方文档" class="headerlink" title="打开官方文档"></a>打开<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/linux-install/">官方文档</a></h3><p>点击当前的linux版本对应的安装指引。本文使用<code>Ubuntu 22.04LTS</code>。</p>
+<h3 id="安装Dokcer-Desktop"><a href="#安装Dokcer-Desktop" class="headerlink" title="安装Dokcer Desktop"></a>安装Dokcer Desktop</h3><blockquote>
+<p>Docker Desktop包括：Docker Engine，Docker CLI client，<br>Docker Compose，<br>Docker Content Trust，<br>Kubernetes，<br>Credential Helper。<br>如果只需要安装<code>Docker Engine</code>可以跳过这一步。  </p>
+</blockquote>
+<p>首先要完全清除旧版本以及配置，包括<code>docker-desktop</code>和<code>docker.cli</code>。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt remove docker-desktop
+<span class="token function">rm</span> -r <span class="token variable">$HOME</span>/.docker/desktop
+<span class="token function">sudo</span> <span class="token function">rm</span> /usr/local/bin/com.docker.cli
+<span class="token function">sudo</span> apt purge docker-desktop
+</code></pre>
+<p>如果未安装<code>gnome</code>桌面环境，提前安装<code>gnome-terminal</code>，执行以下命令。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt <span class="token function">install</span> gnome-terminal
+</code></pre>
+<p>接下来设置<code>apt repository</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+<span class="token function">sudo</span> <span class="token function">mkdir</span> -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token operator">|</span> <span class="token function">sudo</span> gpg --dearmor -o /etc/apt/keyrings/docker.gp 
+<span class="token keyword">echo</span> \
+<span class="token string">"deb [arch=<span class="token variable"><span class="token variable">$(</span>dpkg --print-architecture<span class="token variable">)</span></span> signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+<span class="token variable"><span class="token variable">$(</span>lsb_release -cs<span class="token variable">)</span></span> stable"</span> <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token function">tee</span> /etc/apt/sources.list.d/docker.list <span class="token operator">></span> /dev/null 
+</code></pre>
+<p>并下载最新DEB包，<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/ubuntu/">连接在此</a>。下载完成后在下载目录执行以下命令。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> ./docker-desktop-<span class="token operator">&lt;</span>version<span class="token operator">></span>-<span class="token operator">&lt;</span>arch<span class="token operator">></span>.deb
+</code></pre>
+<h2 id="在菜单中出现Docker-Desktop，安装完成！"><a href="#在菜单中出现Docker-Desktop，安装完成！" class="headerlink" title="在菜单中出现Docker Desktop，安装完成！"></a>在菜单中出现<code>Docker Desktop</code>，安装完成！</h2><h3 id="Docker-Engine"><a href="#Docker-Engine" class="headerlink" title="Docker Engine"></a>Docker Engine</h3><blockquote>
+<p>安装<code>Docker Engine</code>比起以上简单些许，官方为我们提供了安装脚本。</p>
+</blockquote>
+<p>首先打开<code>Docker Engine</code><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/">安装文档</a>，选择当前对应的安装环境，这里用<code>Ubuntu</code>演示。<br><img src="/2022/08/17/docker%E5%AE%89%E8%A3%85%E7%AF%87-linux/333.png" alt="┭┮﹏┭┮图片失效了..">  </p>
+<p>移除旧版本</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> remove docker docker-engine docker.io containerd runc
+</code></pre>
+<p>下载脚本到当前目录，并且执行。</p>
+<pre class=" language-bash"><code class="language-bash">curl -fsSL https://get.docker.com -o get-docker.sh
+DRY_RUN<span class="token operator">=</span>1 sh ./get-docker.sh
+</code></pre>
+<p>安装完成！接着做首尾工作。<br>非root权限如要获取访问Dokcer的权限，做接下来的步骤。<br>创建<code>docker group</code>。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">groupadd</span> docker
+</code></pre>
+<p>将用户添加到组。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">usermod</span> -aG docker <span class="token variable">$USER</span>
+</code></pre>
+<p>要使其生效，需要<code>重启电脑，或者是完全注销当前用户，还可以运行以下命令激活对组的修改</code>。</p>
+<pre class=" language-bash"><code class="language-bash">newgrp docker 
+</code></pre>
+<p>如果在将用户添加到<code>docker</code>组之前最初使用<code>sudo</code>运行<code>Docker CLI</code>命令，可能会看到以下错误，这表明<code>~/.docker/</code>目录是由于<code>sudo</code>命令而使用不正确的权限创建的。需要修复。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chown</span> <span class="token string">"<span class="token variable">$USER</span>"</span><span class="token keyword">:</span><span class="token string">"<span class="token variable">$USER</span>"</span> /home/<span class="token string">"<span class="token variable">$USER</span>"</span>/.docker -R
+<span class="token function">sudo</span> <span class="token function">chmod</span> g+rwx <span class="token string">"<span class="token variable">$HOME</span>/.docker"</span> -R
+</code></pre>
+<p>之后试着运行以下命令吧！</p>
+<pre class=" language-bash"><code class="language-bash">ryokutya@ice-tea:~$ docker run hello-world
+Unable to <span class="token function">find</span> image <span class="token string">'hello-world:latest'</span> locally
+latest: Pulling from library/hello-world
+2db29710123e: Pull complete 
+Digest: sha256:7d246653d0511db2a6b2e0436cfd0e52ac8c066000264b3ce63331ac66dca625
+Status: Downloaded newer image <span class="token keyword">for</span> hello-world:latest
+
+Hello from Docker<span class="token operator">!</span>
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the <span class="token string">"hello-world"</span> image from the Docker Hub.
+    <span class="token punctuation">(</span>amd64<span class="token punctuation">)</span>
+ 3. The Docker daemon created a new container from that image <span class="token function">which</span> runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, <span class="token function">which</span> sent it
+    to your terminal.
+
+To try something <span class="token function">more</span> ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu <span class="token function">bash</span>
+
+Share images, automate workflows, and <span class="token function">more</span> with a <span class="token function">free</span> Docker ID:
+ https://hub.docker.com/
+
+For <span class="token function">more</span> examples and ideas, visit:
+ https://docs.docker.com/get-started/
+</code></pre>
+<p>到此为止，简单安装及配置已完成！</p>
+<blockquote>
+<p>另外，要使<code>Docker</code>开机自启动，将其作为守护进程开启。</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> systemctl <span class="token function">enable</span> docker.service
+<span class="token function">sudo</span> systemctl <span class="token function">enable</span> containerd.service
+</code></pre>
+</p></div><div class="share"><span>Share</span>&nbsp;<span class="soc"><a href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank" class="fa fa-bookmark"></a></span><span class="soc"><a href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));" class="fa fa-weibo"></a></span><span class="soc"><a target="_blank" rel="noopener" href="http://twitter.com/home?status=https://ryokutya6.github.io/2022/08/17/docker安装篇-linux/%20Ryokutya's Notes%20docker安装篇-linux" class="fa fa-twitter"></a></span></div><div class="pagination"><p class="clearfix"><span>&nbsp;</span><span class="next pagbuttons"><a role="navigation" href="/2022/08/15/Minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8D%97/" title="Minecraft服务器部署指南">Next post: Minecraft服务器部署指南&nbsp;<i class="fa fa-angle-double-right"></i></a></span></p></div><a id="comments"></a><div id="disqus_thread"></div><script>var disqus_shortname = 'ryokutya6';
+var disqus_identifier = '2022/08/17/docker安装篇-linux/';
+var disqus_title = 'docker安装篇-linux';
+var disqus_url = 'https://ryokutya6.github.io/2022/08/17/docker安装篇-linux/';
+(function () {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//ryokutya6.disqus.com/count.js" async></script></div></div></div><div class="visible-xs site-bottom-footer"><footer><p>&copy;&nbsp;2022&nbsp;<a target="_blank" href="https://ryokutya6.github.io" rel="noopener noreferrer">ryokutya</a></p><p>Theme&nbsp;<a target="_blank" href="https://github.com/SumiMakito/hexo-theme-typography" rel="noopener noreferrer">Typography</a>&nbsp;by&nbsp;<a target="_blank" href="https://www.keep.moe" rel="noopener noreferrer">Makito</a></p><p>Proudly published with&nbsp;<a target="_blank" href="https://hexo.io" rel="noopener noreferrer">Hexo</a></p></footer></div></div></div></div><script src="/js/jquery-3.1.0.min.js"></script><script src="/js/bootstrap.min.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/google-analytics.js"></script><script src="/js/typography.js"></script></body></html>
