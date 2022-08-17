@@ -8,7 +8,7 @@ Docker Desktop包括：Docker Engine，Docker CLI client，Docker Compose，Dock
 <h3 id="打开官方文档"><a href="#打开官方文档" class="headerlink" title="打开官方文档"></a>打开<a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/install/linux-install/">官方文档</a></h3><p>点击当前的linux版本对应的安装指引。本文使用<code>Ubuntu 22.04LTS</code>。</p>
 <hr>
 <h3 id="安装Dokcer-Desktop"><a href="#安装Dokcer-Desktop" class="headerlink" title="安装Dokcer Desktop"></a>安装Dokcer Desktop</h3><blockquote>
-<p>Docker Desktop包括：Docker Engine，Docker CLI client，<br>Docker Compose，<br>Docker Content Trust，<br>Kubernetes，<br>Credential Helper。<br>如果只需要安装<code>Docker Engine</code>可以跳过这一步。  </p>
+<p>Docker Desktop包括：Docker Engine，Docker CLI client，Docker Compose，Docker Content Trust，Kubernetes，Credential Helper。<br><code>如果只需要安装Docker Engine可以跳过这一步。</code><br>这里和顺带一提，<code>Docker Desktop</code>在<code>linux</code>也运行虚拟机，确保提供跨平台的一致体验。用户想要 Docker Desktop for Linux (DD4L) 最常被引用的原因是为了确保在所有主要操作系统中具有一致的 Docker Desktop 体验和功能对等。使用 VM 可确保 Linux 用户的 Docker 桌面体验与 Windows 和 macOS 的体验非常接近。</p>
 </blockquote>
 <p>首先要完全清除旧版本以及配置，包括<code>docker-desktop</code>和<code>docker.cli</code>。</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> apt remove docker-desktop
@@ -49,7 +49,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg <span class="token opera
 <pre class=" language-bash"><code class="language-bash">curl -fsSL https://get.docker.com -o get-docker.sh
 DRY_RUN<span class="token operator">=</span>1 sh ./get-docker.sh
 </code></pre>
-<p>安装完成！接着做首尾工作。<br>非root权限用户如要获取访问Dokcer的权限，做接下来的步骤。<br>创建<code>docker group</code>。</p>
+<p>安装完成！接着是收尾工作。<br>非root权限用户如要获取访问Dokcer的权限，做接下来的步骤。<br>创建<code>docker group</code>。</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">groupadd</span> docker
 </code></pre>
 <p>将用户添加到组。</p>
